@@ -151,7 +151,7 @@ const LoginPage: NextPage<TProps> = () => {
               <Typography>
                 {"Don't have an account?"}
               </Typography>
-              <Link href="/register">
+              <Link style={{ color: theme.palette.mode === "light" ? theme.palette.common.black : theme.palette.common.white }} href="/register">
                 {"Sign Up"}
               </Link>
             </Box>

@@ -181,7 +181,7 @@ const RegisterPage: NextPage<TProps> = () => {
               <Typography>
                 {"Do you have already account?"}
               </Typography>
-              <Link href="/login">
+              <Link style={{ color: theme.palette.mode === "light" ? theme.palette.common.black : theme.palette.common.white }} href="/login">
                 {"Log in"}
               </Link>
             </Box>
