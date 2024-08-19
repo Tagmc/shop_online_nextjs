@@ -6,18 +6,21 @@ import CustomTextField from "src/components/text-field";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { EMAIL_REG, PASSWORD_REG } from "src/configs/regex";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import IconifyIcon from "src/components/Icon";
 import LoginDark from "/public/images/login-dark.png";
 import LoginLight from "/public/images/login-light.png";
 import GoogleSvg from "/public/svgs/facebook.svg";
 import FacebookSvg from "/public/svgs/google.svg";
+import { useAuth } from "src/hooks/useAuth";
 type TProps = {}
 
 const LoginPage: NextPage<TProps> = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [remember, setRemember] = useState(false);
+  const [remember, setRemember] = useState(true);
+
+  const { login } = useAuth()
 
   const theme = useTheme();
 
@@ -34,8 +37,8 @@ const LoginPage: NextPage<TProps> = () => {
     mode: "onBlur",
     resolver: yupResolver(schema)
   })
-  const onSubmit = (data: { email: String, password: String }) => {
-
+  const onSubmit = (data: { email: string, password: string }) => {
+    if (!Object.keys(errors)?.length) { login({ ...data, rememberMe: remember }) }
   }
   return (
     <Box
@@ -151,7 +154,7 @@ const LoginPage: NextPage<TProps> = () => {
               <Typography>
                 {"Don't have an account?"}
               </Typography>
-              <Link style={{ color: theme.palette.mode === "light" ? theme.palette.common.black : theme.palette.common.white }} href="/register">
+              <Link style={{ color: theme.palette.primary.main }} href="/register">
                 {"Sign Up"}
               </Link>
             </Box>
