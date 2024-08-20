@@ -1,8 +1,6 @@
 'use client'
 import { Box } from '@mui/material'
-import axios from 'axios'
 import Head from 'next/head'
-import CustomTextField from 'src/components/text-field'
 
 export default function Home() {
   return (
@@ -14,10 +12,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Box sx={{ margin: 6, width: "200px" }}>
-        <CustomTextField
-          id="demo-helper-text-aligned-no-helper"
-          label="Name"
-        />
+        
       </Box>
     </>
   )
