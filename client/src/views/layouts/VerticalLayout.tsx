@@ -2,11 +2,13 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import { mainListItems, secondaryListItems } from './listItems';
 import { NextPage } from 'next';
+import ListVerticalLayout from './ListVerticalLayout';
+import IconifyIcon from 'src/components/Icon';
+
+
 
 const drawerWidth: number = 240;
 
@@ -14,6 +16,8 @@ type TProps = {
   open: boolean,
   toggleDrawer: () => void
 }
+
+
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -32,9 +36,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
         }),
-        width: theme.spacing(7),
+        width: theme.spacing(16),
         [theme.breakpoints.up('sm')]: {
-          width: theme.spacing(9),
+          width: theme.spacing(16),
         },
       }),
     },
@@ -42,6 +46,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const VerticalLayout: NextPage<TProps> = ({ open, toggleDrawer }) => {
+  
   return (
     <Drawer variant="permanent" open={open}>
       <Toolbar
@@ -53,14 +58,11 @@ const VerticalLayout: NextPage<TProps> = ({ open, toggleDrawer }) => {
         }}
       >
         <IconButton onClick={toggleDrawer}>
+          <IconifyIcon icon={"mingcute:left-line"} />
         </IconButton>
       </Toolbar>
       <Divider />
-      <List component="nav">
-        {mainListItems}
-        <Divider sx={{ my: 1 }} />
-        {secondaryListItems}
-      </List>
+      <ListVerticalLayout open={open} />
     </Drawer>
   );
 }

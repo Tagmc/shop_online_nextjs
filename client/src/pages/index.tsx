@@ -1,8 +1,9 @@
 'use client'
-import { Box } from '@mui/material'
 import Head from 'next/head'
+import { ReactNode } from 'react'
+import LayoutNotApp from 'src/views/layouts/LayoutNotApp'
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Head>
@@ -11,9 +12,8 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Box sx={{ margin: 6, width: "200px" }}>
-        
-      </Box>
     </>
   )
 }
+export default Home;
+Home.getLayout = (page: ReactNode) => <LayoutNotApp>{page}</LayoutNotApp>
